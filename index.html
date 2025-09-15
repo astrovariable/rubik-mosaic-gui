@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Rubik Mosaic — Build with 3×3 cubes</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- JSZip and FileSaver (CDN) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.0/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Rubik Mosaic — browser GUI</h1>
+    <p>Drag & drop a photo, tune settings, and download mosaic + build instructions.</p>
+  </header>
+
+  <main>
+    <section id="controls">
+      <div class="drop-area" id="dropArea">
+        <input type="file" id="fileInput" accept="image/*" />
+        <p>Drag & drop an image here, or click to choose</p>
+        <canvas id="previewThumbnail" hidden></canvas>
+      </div>
+
+      <div class="settings">
+        <label>
+          Cubes across:
+          <input id="cubesAcross" type="number" min="1" value="20" />
+        </label>
+        <label>
+          Sticker px (preview scale):
+          <input id="stickerPx" type="number" min="4" value="18" />
+        </label>
+        <label>
+          Blur sigma (0 = none):
+          <input id="blurSigma" type="number" step="0.1" min="0" value="1.0" />
+        </label>
+        <label>
+          Luminance weight:
+          <input id="lumWeight" type="number" step="0.1" min="1.0" value="2.2" />
+        </label>
+        <label>
+          Save per-cube PNGs:
+          <input id="saveCubes" type="checkbox" />
+        </label>
+
+        <div class="buttons">
+          <button id="processBtn" disabled>Process & Preview</button>
+          <button id="downloadMosaicBtn" disabled>Download Mosaic PNG</button>
+          <button id="downloadCsvBtn" disabled>Download CSV</button>
+          <button id="downloadZipBtn" disabled>Download ZIP of cube PNGs</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="preview">
+      <h2>Preview</h2>
+      <div id="previewWrap">
+        <canvas id="mosaicCanvas"></canvas>
+      </div>
+      <div id="info"></div>
+    </section>
+  </main>
+
+  <footer>
+    <small>Client-side only. Palette = W Y R O B G. Built for Github Pages.</small>
+  </footer>
+
+  <script src="script.js" type="module"></script>
+</body>
+</html>
